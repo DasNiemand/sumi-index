@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "apps": [
+    {
+      "id": "jigen",
+      "repo": "github.com/DasNiemand/sumi-jigen",
+      "ref": "v1.1.0",
+      "sha": "ba3797b585b2a8a4975f224ceeff9c0ef8bf7582"
+    },
+    {
+      "id": "kakunin",
+      "repo": "github.com/DasNiemand/sumi-kakunin",
+      "ref": "v1.1.0",
+      "sha": "edb535a9888581067ca6a9f84ccbaa0bee28a9a9"
+    }
+  ]
+}
