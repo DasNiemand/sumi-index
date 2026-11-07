@@ -9,7 +9,8 @@ id="${1:-}"; tag="${2:-}"
 command -v jq >/dev/null || { echo "thiếu jq" >&2; exit 1; }
 owner="${SUMI_OWNER:-DasNiemand}"
 repo="github.com/$owner/sumi-$id"
-sha="$(git ls-remote "https://$repo.git" "refs/tags/$tag^{}" | awk '{print $1; exit}')"
+base="${SUMI_GIT_BASE:-https://github.com}"      # chỉ đổi khi test
+sha="$(git ls-remote "$base/${repo#github.com/}.git" "refs/tags/$tag^{}" | awk '{print $1; exit}')"
 [[ "$sha" =~ ^[0-9a-f]{40}$ ]] || { echo "không thấy tag annotated $tag ở $repo (đã push tag chưa? tag phải tạo bằng 'git tag -a')" >&2; exit 1; }
 f="index.json"; [ -f "$f" ] || echo '{"version":1,"apps":[]}' >"$f"
 jq --arg id "$id" --arg repo "$repo" --arg ref "$tag" --arg sha "$sha" \
